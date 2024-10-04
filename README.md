@@ -1,20 +1,27 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Description
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+A Chart project for uniovi-avib-morphingprojections-backend-security microservice
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+# Deploye steps
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+**STEP01**: create a helm chart projection
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+```
+$ helm create uniovi-avib-morphingprojections-backend-security-chart
+```
+
+**STEP02**: build chart package
+
+This command will generate zip file locally with our chart configuration. The name depends on the  chart name and version configured
+
+```
+$ helm package .
+```
+
+**STEP03**: publish chart package in Azure Container Registry
+
+This command will publish our chart package inside our ACR repository
+
+```
+$ helm push uniovi-avib-morphingprojections-backend-security-chart-1.0.0.tgz oci://avibdocker.azurecr.io/helm
+```
